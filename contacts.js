@@ -1,16 +1,39 @@
-function listContacts() {
-  // ...твой код
-}
+const contactsOperations = require("./db/app");
 
-function getContactById(contactId) {
-  // ...твой код
-}
+const invokeAction = async ({ action, id, name, email, phone }) => {
+  switch (action) {
+    case "list":
+      const contacts = await contactsOperations.getAllContacts();
+      console.table(contacts);
+      break;
 
-function removeContact(contactId) {
-  // ...твой код
-}
+    case "get":
+      const contact = await contactsOperations.getContactById(id);
+      console.log(contact);
+      break;
 
-function addContact(name, email, phone) {
-  // ...твой код
-}
-const argv = require("yargs").argv;
+    case "add":
+      const newContact = await contactsOperations.addContact({
+        name,
+        email,
+        phone,
+      });
+      console.log(newContact);
+      break;
+
+    case "remove":
+      const removeContact = await contactsOperations.removeContactById(id);
+      console.log(removeContact);
+      break;
+
+    case "update":
+      const rmvContact = await contactsOperations.updateContact(id);
+      console.log(updateContact);
+      break;
+
+    default:
+      console.log("Unknown action type!");
+  }
+};
+
+module.exports = invokeAction;

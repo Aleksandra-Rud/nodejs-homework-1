@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Aleksandra-Rud/nodejs-homework-1#readme",
   "dependencies": {
+    "commander": "^8.3.0",
     "uuid": "^8.3.2",
     "yargs": "^17.3.0"
   }
